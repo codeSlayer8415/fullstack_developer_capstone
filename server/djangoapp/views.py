@@ -39,13 +39,44 @@ def login_user(request):
     return JsonResponse(data)
 
 # Create a `logout_request` view to handle sign out request
-# def logout_request(request):
-# ...
+def logout_request(request):
+    data = {"username":""}
+    return JsonResponse(data)
 
 # Create a `registration` view to handle sign up request
-# @csrf_exempt
-# def registration(request):
-# ...
+@csrf_exempt
+def registration(request):
+    context = {}
+    data = json.loads(request.body)
+    username = data['userName']
+    password = data['password']
+    first_name = data['firstName']
+    last_name = data['lastName']
+    email = data['email']
+    user_exist = False
+    email_exist = False
+    try:
+        # User already existed
+        User.objects.get(username=username)
+        user_exist = True
+    except:
+        # User doesnt exist yet
+        logger.debug(f"{username} is new user")
+    
+    # os if it is a new user:
+    if not user_exist:
+        # Then we can simply add all the required details in user model
+        user = User.objects.create_user(username=username, first_name=first_name, last_name=last_name,password=password, email=email)
+        login(request, user)
+        data = {"userName":username,"status":"Authenticated"}
+        return JsonResponse(data)
+    else:
+        data = {"userName":username,"error":"Already Registered"}
+        return JsonResponse(data)
+
+    
+
+
 
 # # Update the `get_dealerships` view to render the index page with
 # a list of dealerships
