@@ -37,7 +37,7 @@ class CarModel(models.Model):
         ])
     MANUFACTURE_TYPES = [('LOCAL', 'LOCAL'), ('IMPORTED', 'IMPORTED')]
     manufacture_type = models.CharField(max_length=10,
-                                        choices=MANUFACTURE_TYPES, default='LOCAL')
+choices=MANUFACTURE_TYPES, default='LOCAL')
 
     def __str__(self):
         return self.name
