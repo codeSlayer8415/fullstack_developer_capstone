@@ -54,6 +54,7 @@ def post_review(data_dict):
     except Exception as err:
         print(f"Network exception occurred: {err}")
 
+
 # Search cars request
 def searchcars_request(endpoint, **kwargs):
     # Add code for get requests to back end
@@ -72,4 +73,3 @@ def searchcars_request(endpoint, **kwargs):
         print(f'Network error occured: {err}')
     finally:
         print("GET request call complete!")
-
