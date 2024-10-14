@@ -33,6 +33,6 @@ urlpatterns = [
     # path for add a review view
     path(route='add_review', view=views.add_review, name='add_review'),
     # Path to -get inventory details based on query parameters
-    path(route='get_inventory/<int:dealer_id>', view = views.get_inventory, name='get_inventory')
+    path(route='get_inventory/<int:dealer_id>', view=views.get_inventory, name='get_inventory') # noqa
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
