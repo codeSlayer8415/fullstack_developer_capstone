@@ -152,7 +152,7 @@ def add_review(request):
 def get_inventory(request, dealer_id):
     # Request data that contains parameters
     data = request.GET
-    if(dealer_id):
+    if (dealer_id):
         if 'year' in data:
             endpoint = "/carsbyyear/"+str(dealer_id)+"/"+data['year']
         elif 'make' in data:
@@ -165,7 +165,6 @@ def get_inventory(request, dealer_id):
             endpoint = "/carsbyprice/"+str(dealer_id)+"/"+data['price']
         else:
             endpoint = "/cars/"+str(dealer_id)
- 
         cars = searchcars_request(endpoint)
         return JsonResponse({"status": 200, "cars": cars})
     else:
